@@ -23,13 +23,14 @@ Here's the solution that I implemented that help me solve those challenges
 
 The first step was to integrate Jenkins with Gitlab so the build status would be reported next to the Gitlab project based on the Jenkins testing of the package.
 
-Create a chocolatey project in Gitlab:
+###Create a chocolatey project in Gitlab:
 1. Go to your dashboard on Gitlab
 2. Click on "New project" in the upper right hand corner
 3. Fill out the required information
 4. Click "Create project"
 
-To integrate Jenkins with Gitlab, follow these steps:
+###Integrate Jenkins with Gitlab
+In order for Jenkins to checkout projects from Gitlab and report back commit status, we need to add some credentials and API tokens.
 
 1. Install Jenkins
 2. Install the recommended plugins
@@ -84,7 +85,8 @@ To integrate Jenkins with Gitlab, follow these steps:
     6. Click "Test Connection" and verify you get a "Success" message
 10. Congratulations, Gitlab and Jenkins should now be integrated!
 
-Now we will create a Jenkins Multibranch pipeline. This job will be configured so it scans the Gitlab repository for a Jenkinsfile and automatically create a job for any branches that contain this file. This is known as pipeline as a code.
+###Create a Jenkins Multibranch pipeline.
+This job will be configured so it scans the Gitlab repository for a Jenkinsfile and automatically create a job for any branches that contain this file. This is known as pipeline as a code.
 
 1. Open a browser to your Jenkins web interface and login if necessary
 2. Click on New Item in the upper left
@@ -98,6 +100,7 @@ Now we will create a Jenkins Multibranch pipeline. This job will be configured s
     3. Under "Credentials", select the SSH credentials we added for Gitlab previously
     4. Click "Save"
 
+###Add a Webhook for Jenkins
 In order for Jenkins to be notified when changes to a branch are committed, we need to add a webhook in Gitlab to trigger the Multibranch pipeline to run.
 
 1. Open a browser to the Gitlab repository for the chocolatey package
@@ -109,6 +112,7 @@ In order for Jenkins to be notified when changes to a branch are committed, we n
     5. Click “Test”
     6. Verify "HTTP 200" status is returned
 
+###Clone the chocolatey repository
 You will now need to clone the chocolatey project you created earlier to your local workstation.
 
 *Note: A sample Jenkinsfile is included in my repository.*
@@ -127,7 +131,7 @@ You will now need to clone the chocolatey project you created earlier to your lo
 12. This should trigger the Jenkins Multibranch pipeline job created previously
 13. If the chocolatey package has no issues, the job should finish successfully and shown as a passing build in Gitlab
 
-You should now have a complete pipeline that does the following after committing a chocolatey package to Gitlab.
+###You should now have a complete pipeline that does the following after committing a chocolatey package to Gitlab.
   1. Source control in Gitlab
   2. Jenkins will spin up a VM (if configured - not covered in this article) and revert to a clean snapshot
   3. Jenkins will create a chocolatey package
