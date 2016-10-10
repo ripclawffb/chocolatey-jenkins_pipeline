@@ -112,6 +112,20 @@ In order for Jenkins to be notified when changes to a branch are committed, we n
     5. Click “Test”
     6. Verify "HTTP 200" status is returned
 
+###Create Jenkins credential for Chocolatey API
+Before you can push packages to the chocolatey server, you will need to create a Jenkins credential that contains the chocolatey server API key.
+
+1. Go back to the Jenkins web interface, and log in if necessary
+2. Click on "Credentials"
+3. Click on "System", then "Global Credentials"
+4. Create a new [credential](https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin) by clicking on "Add Credentials"
+    1. Under "Kind", select "Secret text"
+    2. Select a "Scope"
+    3. Type in the chocolatey server API key into the "Secret" field
+    4. Leave the "ID" field blank
+    5. Enter a "Description" for the credential (optional)
+    6. Click "OK"
+
 ###Clone the chocolatey repository
 You will now need to clone the chocolatey project you created earlier to your local workstation.
 
@@ -125,11 +139,12 @@ You will now need to clone the chocolatey project you created earlier to your lo
 6. An empty repository should be created
 7. Change directories to the new folder
 8. Copy the chocolatey tools folder, .nuspec file, Jenkinsfile to this location and any other support files (if necessary) to this folder
-9. Type `git add .` to start tracking all the new files
-10. Type `git commit -m "commit message"` to commit the changes
-11. Type `git push -u origin master` to push the files to Gitlab
-12. This should trigger the Jenkins Multibranch pipeline job created previously
-13. If the chocolatey package has no issues, the job should finish successfully and shown as a passing build in Gitlab
+9. Edit the Jenkinsfile and replace the contents with your gitlab server info and the credential id that contains your chocolatey server api key (created earlier)
+10. Type `git add .` to start tracking all the new files
+12. Type `git commit -m "commit message"` to commit the changes
+12. Type `git push -u origin master` to push the files to Gitlab
+13. This should trigger the Jenkins Multibranch pipeline job created previously
+14. If the chocolatey package has no issues, the job should finish successfully and shown as a passing build in Gitlab
 
 ###You should now have a complete pipeline that does the following after committing a chocolatey package to Gitlab.
   1. Source control in Gitlab
