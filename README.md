@@ -146,12 +146,14 @@ You will now need to clone the chocolatey project you created earlier to your lo
 13. This should trigger the Jenkins Multibranch pipeline job created previously
 14. If the chocolatey package has no issues, the job should finish successfully and shown as a passing build in Gitlab
 
-###You should now have a complete pipeline that does the following after committing a chocolatey package to Gitlab.
-  1. Source control in Gitlab
-  2. Jenkins will spin up a VM (if configured - not covered in this article) and revert to a clean snapshot
-  3. Jenkins will create a chocolatey package
-  4. Jenkins will execute an installation and ensure it is successful
-  5. Jenkins will execute an uninstallation and ensure it is successful
-  6. Jenkins will push the tested build to the repository (only if the test was successful on the master branch)
+###Testing
+You should now have a complete pipeline that does the following after committing a chocolatey package to Gitlab.
+
+1. Source control in Gitlab
+2. Jenkins will spin up a VM (if configured - not covered in this article) and revert to a clean snapshot
+3. Jenkins will create a chocolatey package
+4. Jenkins will execute an installation and ensure it is successful
+5. Jenkins will execute an uninstallation and ensure it is successful
+6. Jenkins will push the tested build to the repository (only if the test was successful on the master branch)
 
 *Note: I put in a conditional statement to push packages to the repository under the master branch to ensure a merge request was approved. This ensures that packages in production are not overwritten while a chocolatey package is undergoing testing. If your protected branch has a different name, make sure to update the Jenkinsfile with the correct name. Also, in order to overwrite existing packages, this option needs to be enabled on the chocolatey server.*
