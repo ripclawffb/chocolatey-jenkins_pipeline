@@ -35,7 +35,7 @@ In order for Jenkins to checkout projects from Gitlab and report back commit sta
 1. Install Jenkins
 2. Install the recommended plugins
 3. Install the Jenkins Gitlab Plugin
-4. Create an [SSH key pair](https://docs.gitlab.com/ce/ssh/README.html) for a new user to be used as a deploy key by Jenkins so the agents can checkout branches from Gitlab via ssh.
+4. Create an [SSH key pair](https://docs.gitlab.com/ce/ssh/README.html) for a new user to be used as a deploy key by Jenkins so the agents can checkout branches from Gitlab via ssh. Give this user Developer permissions to the Gitlab project so the build status can be reported back.
    *Note: Leave the passphrase blank, otherwise, Jenkins will not be able to checkout branches
 5. Create a deploy key for the Gitlab project
     1. Navigate to the Gitlab project dashboard
