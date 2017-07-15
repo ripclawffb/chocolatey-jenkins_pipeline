@@ -146,7 +146,7 @@ You will now need to clone the chocolatey project you created earlier to your lo
 13. This should trigger the Jenkins Multibranch pipeline job created previously
 14. If the chocolatey package has no issues, the job should finish successfully and shown as a passing build in Gitlab
 
-###Testing
+### Testing
 You should now have a complete pipeline that does the following after committing a chocolatey package to Gitlab.
 
 1. Source control in Gitlab
