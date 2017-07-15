@@ -23,13 +23,13 @@ Here's the solution that I implemented that help me solve those challenges
 
 The first step was to integrate Jenkins with Gitlab so the build status would be reported next to the Gitlab project based on the Jenkins testing of the package.
 
-###Create a chocolatey project in Gitlab:
+### Create a chocolatey project in Gitlab:
 1. Go to your dashboard on Gitlab
 2. Click on "New project" in the upper right hand corner
 3. Fill out the required information
 4. Click "Create project"
 
-###Integrate Jenkins with Gitlab
+### Integrate Jenkins with Gitlab
 In order for Jenkins to checkout projects from Gitlab and report back commit status, we need to add some credentials and API tokens.
 
 1. Install Jenkins
@@ -85,7 +85,7 @@ In order for Jenkins to checkout projects from Gitlab and report back commit sta
     6. Click "Test Connection" and verify you get a "Success" message
 10. Congratulations, Gitlab and Jenkins should now be integrated!
 
-###Create a Jenkins Multibranch pipeline.
+### Create a Jenkins Multibranch pipeline.
 This job will be configured so it scans the Gitlab repository for a Jenkinsfile and automatically create a job for any branches that contain this file. This is known as pipeline as a code.
 
 1. Open a browser to your Jenkins web interface and login if necessary
@@ -100,7 +100,7 @@ This job will be configured so it scans the Gitlab repository for a Jenkinsfile 
     3. Under "Credentials", select the SSH credentials we added for Gitlab previously
     4. Click "Save"
 
-###Add a Webhook for Jenkins
+### Add a Webhook for Jenkins
 In order for Jenkins to be notified when changes to a branch are committed, we need to add a webhook in Gitlab to trigger the Multibranch pipeline to run.
 
 1. Open a browser to the Gitlab repository for the chocolatey package
@@ -112,7 +112,7 @@ In order for Jenkins to be notified when changes to a branch are committed, we n
     5. Click “Test”
     6. Verify "HTTP 200" status is returned
 
-###Create Jenkins credential for Chocolatey API
+### Create Jenkins credential for Chocolatey API
 Before you can push packages to the chocolatey server, you will need to create a Jenkins credential that contains the chocolatey server API key.
 
 1. Go back to the Jenkins web interface, and log in if necessary
@@ -126,7 +126,7 @@ Before you can push packages to the chocolatey server, you will need to create a
     5. Enter a "Description" for the credential (optional)
     6. Click "OK"
 
-###Clone the chocolatey repository
+### Clone the chocolatey repository
 You will now need to clone the chocolatey project you created earlier to your local workstation.
 
 *Note: A sample Jenkinsfile is included in my repository.*
